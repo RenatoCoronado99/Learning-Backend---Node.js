@@ -2,12 +2,16 @@ const express = require("express");
 const server = express();
 const cors = require("cors");
 const { Technology } = require("../models");
-const { Mongoose } = require("mongoose");
+const { TechnologiesRoutes } = require('../routes');
+const {NotFoundMiddleware} = require('../middlewares');
 
 server.use(express.json());
 server.use(express.static(__dirname + "/../public"));
 server.use(cors());
-server.get("/api/technologies", async (req, res, next) => {
+server.use('/', TechnologiesRoutes);
+server.use(NotFoundMiddleware);
+module.exports = server;
+/*server.get("/api/technologies", async (req, res, next) => {
   let technologies = await Technology.find();
   technologies = technologies.map((technology) => {
     technology.logo = `${req.protocol}://${req.headers.host}/img/${technology.logo}`;
@@ -34,6 +38,5 @@ server.get("/api/technology/search/:name", async (req, res, next) => {
     return technology;
   });
   return res.send({ error: false, data: technologies });
-});
+});*/
 
-module.exports = server;
