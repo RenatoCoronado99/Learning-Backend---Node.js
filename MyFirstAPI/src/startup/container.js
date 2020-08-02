@@ -18,6 +18,9 @@ const Routes = require("../routes");
 //Models
 const { User, Idea, Comment } = require("../models");
 
+//Repositories
+const { UserRepository, IdeaRepository, CommentRepository } = require('../repositories');
+
 const container = createContainer();
 
 //con register, realizamos cualquier tipo de inyección de dependencias
@@ -45,6 +48,12 @@ container
     User: asValue(User),
     Idea: asValue(Idea),
     Comment: asValue(Comment)
+  })
+  //Registrar Repositorios
+  .register({
+    UserRepository: asClass(UserRepository).singleton(),
+    IdeaRepository: asClass(IdeaRepository).singleton(),
+    CommentRepository: asClass(CommentRepository).singleton()
   });
 
 module.exports = container;
