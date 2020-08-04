@@ -42,7 +42,7 @@ class IdeaService extends BaseService
     return await _ideaRepository.update(ideaId, { upvotes: idea.upvotes });
   }
 
-  async dowVoteIdea(ideaId)
+  async downVoteIdea(ideaId)
   {
     if(!ideaId)
     {
