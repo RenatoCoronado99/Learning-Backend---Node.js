@@ -5,7 +5,7 @@ const compression = require("compression"); //Nos ayuda a comprimir las peticion
 require("express-async-errors"); //Nos ayuda a capturar en un middleware las exepciones asíncronas de un middleware
 const { NotFoundMiddleware, ErrorMiddleware } = require('../middlewares'); //Middlewares de errores y status code.
 
-module.exports = function ({ HomeRoutes }) 
+module.exports = function ({ HomeRoutes, UserRoutes, IdeaRoutes, CommentRoutes }) 
 {
   const router = express.Router();
   const apiRoutes = express.Router();
@@ -17,6 +17,9 @@ module.exports = function ({ HomeRoutes })
   .use(compression());
 
   apiRoutes.use("/home", HomeRoutes);
+  apiRoutes.use("/user", UserRoutes);
+  apiRoutes.use("/idea", IdeaRoutes);
+  apiRoutes.use("/comment", CommentRoutes);
   router.use("/v1/api", apiRoutes);
   router.use(NotFoundMiddleware);
   router.use(ErrorMiddleware);
