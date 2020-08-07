@@ -15,14 +15,15 @@ class IdeaController
 
     async getAll(req, res)
     {
-        const ideas = await _ideaService.getAll();
+        const { pageSize, pageNum } = req.query;
+        const ideas = await _ideaService.getAll(pageSize, pageNum);
         return res.send(ideas);
     }
 
     async create(req, res)
     {
         const { body } = req;
-        createdIdea = await _ideaService.create(body);
+        const createdIdea = await _ideaService.create(body);
         return res.status(201).send(createdIdea);
     }
 

@@ -8,10 +8,15 @@ class BaseRepository {
   {
     return await this.model.findById(id);
   }
-
-  async getAll() 
+  //pageSize: nos limita la cantidad de recursos(elementos de una colección)
+  //pageNum: la página que queremos saber
+  async getAll(pageSize = 5, pageNum = 1) 
   {
-    return await this.model.find();
+    //skip - limit
+    //skip: le dic a mongoose cuántos elementos debe saltar
+    //limit: limita la cantidad de elementos que debe retornar
+    const skips = pageSize*(pageNum-1);
+    return await this.model.find().skip(skips).limit(pageSize);
   }
 
   async create(entity) 
