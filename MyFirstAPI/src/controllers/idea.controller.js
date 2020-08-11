@@ -31,7 +31,7 @@ class IdeaController
     {
         const { body } = req;
         const { ideaId } = req.params;
-        const updatedIdea = await _ideaService.update(id, body);
+        const updatedIdea = await _ideaService.update(ideaId, body);
         return res.send(updatedIdea);
     }
 

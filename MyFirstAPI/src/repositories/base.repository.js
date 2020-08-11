@@ -16,7 +16,7 @@ class BaseRepository {
     //skip: le dic a mongoose cuántos elementos debe saltar
     //limit: limita la cantidad de elementos que debe retornar
     const skips = pageSize*(pageNum-1);
-    return await this.model.find().skip(skips).limit(pageSize);
+    return await this.model.find()/*.skip(skips).limit(pageSize)*/;
   }
 
   async create(entity) 

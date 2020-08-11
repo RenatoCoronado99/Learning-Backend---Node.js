@@ -1,7 +1,7 @@
 let _commentService = null;
 class CommentController
 {
-    contructor({ CommentService })
+    constructor({ CommentService })
     {
         _commentService = CommentService;
     }
@@ -39,7 +39,8 @@ class CommentController
     {
         const { body } = req;
         const { ideaId } = req.params;
-        commentCreated = _commentService.createComment(body, ideaId);
+        const { id: userId } = req.user;
+        const commentCreated = await _commentService.createComment(body, ideaId, userId);
         return res.status(201).send(commentCreated);
     }
 }

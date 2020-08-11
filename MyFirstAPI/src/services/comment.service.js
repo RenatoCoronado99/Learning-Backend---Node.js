@@ -31,7 +31,7 @@ class CommentService extends BaseService
         return comments;
     }
 
-    async createComment(comment, ideaId)
+    async createComment(comment, ideaId, userId)
     {
         if(!ideaId)
         {
@@ -48,7 +48,7 @@ class CommentService extends BaseService
             error.message = "Idea not found";
             throw error;
         }
-        const createdComment = await _commentRepository.create(comment);
+        const createdComment = await _commentRepository.create({...comment, author: userId});
         idea.comments.push(createdComment);
 
         return await _ideaRepository.update(ideaId, { comments: idea.comments });
