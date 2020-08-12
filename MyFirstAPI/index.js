@@ -13,3 +13,5 @@ mongoose.connect(MONGO_URI, {useNewUrlParser: true, useFindAndModify: false, use
     });
 })
 .catch(console.log);
+
+//docker-compose up --build
