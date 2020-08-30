@@ -1,0 +1,20 @@
+{
+  "name": "excelmakertelefonica",
+  "version": "1.0.0",
+  "description": "Excel Maker for the state of the Telefonica's stations",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "Nodejs",
+    "Stations",
+    "Coronado"
+  ],
+  "author": "Renato Coronado",
+  "license": "ISC",
+  "dependencies": {
+    "exceljs": "^4.1.1",
+    "express": "^4.17.1"
+  }
+}

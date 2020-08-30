@@ -1,0 +1,26 @@
+{
+  "name": "excelgeneratortelefonica",
+  "version": "1.0.0",
+  "description": "Excel Generator for the status of the stations",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "nodejs",
+    "excel",
+    "telefonica"
+  ],
+  "author": "Renato Coronado",
+  "license": "ISC",
+  "dependencies": {
+    "awilix": "^4.2.6",
+    "exceljs": "^4.1.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.4"
+  }
+}
