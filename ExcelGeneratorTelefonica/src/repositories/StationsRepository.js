@@ -34,16 +34,21 @@ class StationsRepository {
     for (var k = 0; k < list.length; k++) {
       let elemTry = this.splitAndRemoveEmptyElements(list[k], "\r\n").filter(
         (elem) => {
-          return elem != "%A" && elem.includes("-");
+          return elem != "%A" && (elem.includes("-") || elem.includes("BCCH"));
         }
       );
-      elemTry.forEach((el, index, array) => {
+      elemTry.forEach((el, index, array) => 
+      {
         array[index] = el.replace("-", "");
       });
       let object = {};
       for (var i = 0; i < elemTry.length; i++) {
         let keyvalue = elemTry[i].split("=");
-        if (keyvalue.length > 2 && elemTry[i].includes("ObjectOfReference")) {
+        if(elemTry[i].includes("BCCH"))
+        {
+          object["Station"] = elemTry[i].split(" ")[0].replace(":", "");
+        }
+        else if (keyvalue.length > 2 && elemTry[i].includes("ObjectOfReference")) {
           let keyValues = elemTry[i].split(",");
           let f = keyValues[keyValues.length - 1].split("=");
           object["Station"] = f[1];
