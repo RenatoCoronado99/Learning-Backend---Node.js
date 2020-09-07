@@ -39,14 +39,14 @@ class StationsRepository {
       );
       elemTry.forEach((el, index, array) => 
       {
-        array[index] = el.replace("-", "");
+        array[index] = el.includes("-")? el.replace("-", "") : el.replace(":", "");
       });
       let object = {};
       for (var i = 0; i < elemTry.length; i++) {
         let keyvalue = elemTry[i].split("=");
         if(elemTry[i].includes("BCCH"))
         {
-          object["Station"] = elemTry[i].split(" ")[0].replace(":", "");
+          object["Station"] = elemTry[i].split(" ")[0];
         }
         else if (keyvalue.length > 2 && elemTry[i].includes("ObjectOfReference")) {
           let keyValues = elemTry[i].split(",");
