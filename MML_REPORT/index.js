@@ -68,8 +68,12 @@ app.get("/", (req, res)=>
    let worksheet = workbook.addWorksheet("Nodos");
    worksheet.columns = [
       {header: "Nodo", key: "node"},
-      { header: "Tx Optical Power dBm", key: "txOpticaldbm"},
-      { header: "Tx Optical Power microwatts", key: "txOpticalmw"}
+      { header: "Cabinet No", key: "cabinet"},
+      { header: "Subrack No", key: "subrack"},
+      { header: "Slot No", key: "slot" },
+      { header: "Port No", key: "port"},
+      { header: "Tx Optical Power", key: "txOptical"},
+      { header: "Rx Optical Power", key: "rxOptical"}
    ];
    worksheet.columns.forEach((column) => {
       column.width = column.header.length < 12 ? 12 : column.header.length;
@@ -78,11 +82,15 @@ app.get("/", (req, res)=>
    list.forEach((el, index, array)=>
    {
       array[index]["TxOpticaldBm"] = parseInt(array[index]['TX optical power(0.01dBm)']) * 0.01;
-      array[index]["TxOpticalMw"] = parseInt(array[index]['TX optical power(0.1microwatt)']) * 0.1;
+      array[index]["RxOpticaldBm"] = parseInt(array[index]['RX optical power(0.01dBm)']) * 0.01;
       worksheet.addRow({
          node: el["Nodo"],
-         txOpticaldbm: el['TxOpticaldBm'],
-         txOpticalmw: el["TxOpticalMw"]
+         cabinet: el["Cabinet No."],
+         subrack: el["Subrack No."],
+         slot: el["Slot No."],
+         port: el["Port No."],
+         txOptical: el['TxOpticaldBm'],
+         rxOptical: el["RxOpticaldBm"]
       });
    });
    res.setHeader(
